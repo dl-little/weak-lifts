@@ -3,6 +3,7 @@ import { ActivityIndicator, Button, TextInput, View, KeyboardAvoidingView } from
 import Theme from '../Theme'
 import { FIREBASE_AUTH } from '../../FirebaseConfig';
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
+import { Logo } from '../Theme';
 
 const SignIn = () => {
 	const [email, setEmail] = useState('');
@@ -36,6 +37,12 @@ const SignIn = () => {
 	return (
 		<View style={Theme.container}>
 			<KeyboardAvoidingView behavior='padding'>
+				<Logo
+					height={40}
+					width={40}
+					primary={'#DCA315'}
+					secondary={'#B5FF00'}
+				/>
 				<TextInput
 					value={email}
 					style={Theme.textInput}
