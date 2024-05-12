@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { ActivityIndicator, Button, TextInput, View, KeyboardAvoidingView } from 'react-native';
-import Theme from '../Theme'
+import { ActivityIndicator, TextInput, View, KeyboardAvoidingView } from 'react-native';
+import Theme, { Logo, AppButton, Group, primary, secondary } from '../Theme'
 import { FIREBASE_AUTH } from '../../FirebaseConfig';
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
-import { Logo } from '../Theme';
 
 const SignIn = () => {
 	const [email, setEmail] = useState('');
@@ -16,7 +15,7 @@ const SignIn = () => {
 		try {
 			await signInWithEmailAndPassword(auth, email, password);
 		} catch (error) {
-			console.log(error);
+			console.log('Sign in Error', error);
 		} finally {
 			setLoading(false);
 		}
@@ -28,7 +27,7 @@ const SignIn = () => {
 			await createUserWithEmailAndPassword(auth, email, password);
 			alert('check your emails');
 		} catch (error) {
-			console.log(error);
+			console.log('Sign up Error', error);
 		} finally {
 			setLoading(false);
 		}
@@ -38,36 +37,53 @@ const SignIn = () => {
 		<View style={Theme.container}>
 			<KeyboardAvoidingView behavior='padding'>
 				<Logo
-					height={40}
-					width={40}
-					primary={'#DCA315'}
-					secondary={'#B5FF00'}
+					height={250}
+					width={250}
+					primary={primary}
+					secondary={secondary}
 				/>
-				<TextInput
-					value={email}
-					style={Theme.textInput}
-					placeholder='Email'
-					autoCapitalize='none'
-					onChangeText={(text) => setEmail(text)}
-				/>
-				<TextInput
-					secureTextEntry={true}
-					value={password}
-					style={Theme.textInput}
-					placeholder='Password'
-					autoCapitalize='none'
-					onChangeText={(text) => setPassword(text)}
-				/>
-				{
-					loading 
-						? <ActivityIndicator size='large' color='#0000FF' />
-						: (
-							<>
-								<Button title='Login' onPress={signIn} />
-								<Button title='Sign Up' onPress={signUp} />
-							</>
-						)
-				}
+				<Group
+					flexDirection={'column'}
+					gap={10}
+					disabled={!!loading}
+				>
+					<TextInput
+						value={email}
+						style={Theme.textInput}
+						placeholder='Email'
+						autoCapitalize='none'
+						onChangeText={(text) => setEmail(text)}
+					/>
+					<TextInput
+						secureTextEntry={true}
+						value={password}
+						style={Theme.textInput}
+						placeholder='Password'
+						autoCapitalize='none'
+						onChangeText={(text) => setPassword(text)}
+					/>
+					<Group
+						flexDirection={'row'}
+						justifyContent={'center'}
+						gap={20}
+					>
+						<AppButton title='Login' onPress={signIn} disabled={!!loading} />
+						<AppButton title='Sign Up' onPress={signUp} disabled={!!loading} />
+					</Group>
+					{ !!loading && (
+						<ActivityIndicator
+							size='large'
+							color={primary}
+							style={{
+								position:'absolute',
+								left:0,
+								right:0,
+								bottom:0,
+								top:0,
+							}}
+						/>
+					)}
+				</Group>
 			</KeyboardAvoidingView>
 		</View>
 	);
