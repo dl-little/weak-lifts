@@ -95,17 +95,17 @@ export const Logo = (props) => {
 	>
 		<defs>
 			<linearGradient id="sw-gradient" x1="0" x2="1" y1="1" y2="0">
-				<stop id="stop1" stop-color="${props.primary}" offset="0%"></stop>
-				<stop id="stop2" stop-color="${props.secondary}" offset="100%"></stop>
+				<stop id="stop1" stop-color="${props.secondary}" offset="0%"></stop>
+				<stop id="stop2" stop-color="${props.primary}" offset="100%"></stop>
 			</linearGradient>
 		</defs>
 		<path
-			fill="none"
-			d="M15.4,-13.1C22.3,-3.6,31.9,2.9,30.8,6.7C29.7,10.5,17.8,11.4,7.4,17.1C-3,22.8,-12,33.2,-20,32.7C-28.1,32.3,-35.1,20.9,-35.2,10.8C-35.3,0.7,-28.4,-8.2,-21.4,-17.7C-14.3,-27.2,-7.2,-37.3,-1.5,-36.1C4.2,-34.9,8.5,-22.5,15.4,-13.1Z"
+			fill="url(#sw-gradient)"
+			d="M20,10.6C14.8,20.4,-8,19.1,-14.3,8.6C-20.5,-1.8,-10.3,-21.4,1.1,-20.8C12.5,-20.1,25.1,0.8,20,10.6Z"
 			width="100%"
 			height="100%"
 			transform="translate(50 50)"
-			stroke-width="1"
+			stroke-width="0"
 			style="transition: all 0.3s ease 0s;"
 			stroke="url(#sw-gradient)">
 		</path>
