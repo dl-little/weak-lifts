@@ -5,6 +5,8 @@ export const primary = '#DCA315';
 export const secondary = '#B5FF00';
 export const contrast = '#1E1E1E';
 export const lightgray = '#E8E8E8';
+export const gray = '#747474';
+export const darkgray = '#3A3A3A';
 
 const Theme = StyleSheet.create({
 	container: {

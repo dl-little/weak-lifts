@@ -30,8 +30,7 @@ export default function App() {
 								component={InsideLayout}
 								options={{ headerShown: false }}
 							/>
-						)
-						: (
+						) : (
 							<Stack.Screen
 								name="SignIn"
 								component={SignIn}
