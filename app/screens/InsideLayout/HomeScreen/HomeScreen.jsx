@@ -1,21 +1,18 @@
-import { Text, View, Button } from 'react-native';
+import { Text } from 'react-native';
 import Theme from '../../../Theme';
-import { FIREBASE_AUTH } from '../../../../FirebaseConfig';
+import { ViewHeader, Group } from '../../../components';
 
-const HomeScreen = (props) => {
-	const { navigation } = props;
+const HomeScreen = () => {
 	return (
-		<View style={Theme.container}>
-		  <Text style={Theme.text}>Open up App.js to start working on your app!</Text>
-		  <Button
-		  	title="Profile"
-			onPress={() => navigation.navigate('Profile')}
-		  />
-		  <Button
-		  	title="Sign Out"
-			onPress={() => FIREBASE_AUTH.signOut()}
-		  />
-		</View>
+		<Group
+			flexDirection='column'
+			style={{
+				backgroundColor: 'green'
+			}}
+		>
+			<ViewHeader />
+			<Text style={Theme.text}>Home</Text>
+		</Group>
 	);
 }
 
