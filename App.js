@@ -4,7 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {
 	SignIn,
 	InsideLayout
-} from './screens/';
+} from './app/screens';
 import { onAuthStateChanged } from 'firebase/auth';
 import { FIREBASE_AUTH } from './FirebaseConfig';
 
@@ -30,8 +30,7 @@ export default function App() {
 								component={InsideLayout}
 								options={{ headerShown: false }}
 							/>
-						)
-						: (
+						) : (
 							<Stack.Screen
 								name="SignIn"
 								component={SignIn}
