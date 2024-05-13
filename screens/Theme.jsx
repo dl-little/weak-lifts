@@ -18,8 +18,8 @@ const Theme = StyleSheet.create({
 		padding: 20,
 	},
 	group: {
-		alignSelf: 'stretch',
 		marginVertical: 10,
+		width: '100%'
 	},
 	text: {
 		color: DynamicColorIOS({
@@ -51,6 +51,10 @@ const Theme = StyleSheet.create({
 			pointerEvents: 'none',
 		}
 	},
+	errorMessage: {
+		color: 'red',
+		textAlign: 'right',
+	}
 });
 
 export default Theme;
@@ -69,7 +73,7 @@ export const Group = (props) => {
 				flexDirection: props.flexDirection,
 				...(!!props.disabled && {
 					opacity: .7
-				})
+				}),
 			}}
 		>
 			{props.children}
@@ -105,7 +109,7 @@ export const Logo = (props) => {
 		</path>
 	</svg>`;
 
-    return <SvgXml xml={xml} />
+    return <SvgXml style={{ alignSelf: 'center' }} xml={xml} />
 }
 
 export const AppButton = ({onPress, title, disabled}) => {
