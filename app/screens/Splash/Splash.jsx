@@ -1,5 +1,5 @@
 import { Text, View } from 'react-native';
-import Theme, { Logo, primary, secondary } from '../Theme';
+import Theme, { Logo, primary, secondary } from '../../Theme';
 
 const Splash = () => {
 	return (

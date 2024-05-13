@@ -1,6 +1,6 @@
 import { Text, View, Button } from 'react-native';
-import Theme from '../../Theme';
-import { FIREBASE_AUTH } from '../../../FirebaseConfig';
+import Theme from '../../../Theme';
+import { FIREBASE_AUTH } from '../../../../FirebaseConfig';
 
 const HomeScreen = (props) => {
 	const { navigation } = props;

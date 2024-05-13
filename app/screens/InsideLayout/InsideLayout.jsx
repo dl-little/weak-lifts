@@ -2,7 +2,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from './HomeScreen/HomeScreen';
 import Profile from './Profile/Profile';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import {primary, gray} from '../Theme'
+import {primary, gray} from '../../Theme'
 
 const InsideTab = createBottomTabNavigator();
 

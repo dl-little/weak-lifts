@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { ActivityIndicator, TextInput, View, KeyboardAvoidingView, Text } from 'react-native';
-import Theme, { Logo, AppButton, Group, primary, secondary } from '../Theme'
-import { FIREBASE_AUTH } from '../../FirebaseConfig';
+import Theme, { Logo, AppButton, Group, primary, secondary } from '../../Theme'
+import { FIREBASE_AUTH } from '../../../FirebaseConfig';
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
 
 const SignIn = () => {
