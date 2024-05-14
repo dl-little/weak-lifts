@@ -5,13 +5,13 @@ import {
 	SignIn,
 	InsideLayout
 } from './app/screens';
-import { onAuthStateChanged } from 'firebase/auth';
+import { User, onAuthStateChanged } from 'firebase/auth';
 import { FIREBASE_AUTH } from './FirebaseConfig';
 
 const Stack = createNativeStackNavigator();
 
-export default function App() {
-	const [user, setUser] = useState(null);
+const App = () => {
+	const [user, setUser] = useState<User | null>(null);
 
 	useEffect(() => {
 		onAuthStateChanged( FIREBASE_AUTH, (user) => {
@@ -42,3 +42,5 @@ export default function App() {
 		</NavigationContainer>
 	)
 }
+
+export default App;
