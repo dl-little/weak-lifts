@@ -1,11 +1,12 @@
 import { View } from 'react-native';
 import Theme from '../Theme';
 
-const Group = (props) => {
+const Row = (props) => {
 	return (
 		<View
 			style={{
 				...Theme.group,
+				...Theme.row,
 				...(!!props.style && {
 					...props.style
 				}),
@@ -15,7 +16,6 @@ const Group = (props) => {
 				...(!!props.gap && {
 					gap: props.gap
 				}),
-				flexDirection: props.flexDirection,
 				...(!!props.disabled && {
 					opacity: .7
 				}),
@@ -26,4 +26,4 @@ const Group = (props) => {
 	)
 }
 
-export default Group;
+export default Row;

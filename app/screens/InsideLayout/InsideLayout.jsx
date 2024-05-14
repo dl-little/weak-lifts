@@ -3,6 +3,7 @@ import HomeScreen from './HomeScreen/HomeScreen';
 import Profile from './Profile/Profile';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import {primary, gray} from '../../Theme'
+import { ViewHeader } from '../../components';
 
 const InsideTab = createBottomTabNavigator();
 
@@ -28,9 +29,17 @@ const InsideLayout = () => {
 			<InsideTab.Screen
 				name="HomeScreen"
 				component={HomeScreen}
-				options={{ title: 'Home' }}
+				options={{
+					title: 'Home'
+				}}
 			/>
-			<InsideTab.Screen name="Profile" component={Profile} />
+			<InsideTab.Screen
+				name="Profile"
+				component={Profile}
+				options={{
+					title: 'Profile'
+				}}
+			/>
 		</InsideTab.Navigator>
 	);
 }

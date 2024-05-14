@@ -1,18 +1,13 @@
 import { Text } from 'react-native';
 import Theme from '../../../Theme';
-import { ViewHeader, Group } from '../../../components';
+import { ViewHeader, Column } from '../../../components';
 
 const HomeScreen = () => {
 	return (
-		<Group
-			flexDirection='column'
-			style={{
-				backgroundColor: 'green'
-			}}
-		>
+		<Column>
 			<ViewHeader />
 			<Text style={Theme.text}>Home</Text>
-		</Group>
+		</Column>
 	);
 }
 

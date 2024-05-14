@@ -14,13 +14,21 @@ const Theme = StyleSheet.create({
 			dark: '#1E1E1E',
 			light: '#E8E8E8',
 		}),
-		justifyContent: 'center',
-		alignItems: 'center',
-		padding: 20,
+		paddingHorizontal: 20
 	},
 	group: {
-		marginVertical: 10,
 		width: '100%',
+		display: 'flex',
+	},
+	column: {
+		flexDirection: 'column',
+	},
+	row: {
+		flexDirection: 'row',
+		marginVertical: 10
+	},
+	viewHeader: {
+		marginVertical: 0
 	},
 	text: {
 		color: DynamicColorIOS({
@@ -55,7 +63,7 @@ const Theme = StyleSheet.create({
 	errorMessage: {
 		color: 'red',
 		textAlign: 'right',
-	}
+	},
 });
 
 export default Theme;

@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { ActivityIndicator, TextInput, View, KeyboardAvoidingView, Text } from 'react-native';
 import Theme, { primary, secondary } from '../../Theme'
-import { AppButton, Logo, Group } from '../../components'
+import { AppButton, Logo, Row, Column } from '../../components'
 import { FIREBASE_AUTH } from '../../../FirebaseConfig';
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
 
@@ -54,7 +54,7 @@ const SignIn = () => {
 	}
 
 	return (
-		<View style={Theme.container}>
+		<Column style={Theme.container}>
 			<KeyboardAvoidingView behavior='padding'>
 				<Logo
 					height={200}
@@ -62,8 +62,7 @@ const SignIn = () => {
 					primary={primary}
 					secondary={secondary}
 				/>
-				<Group
-					flexDirection='column'
+				<Column
 					gap={10}
 					disabled={!!loading}
 				>
@@ -85,37 +84,36 @@ const SignIn = () => {
 						autoCapitalize='none'
 						onChangeText={(text) => setPassword(text)}
 					/>
-					<Group
-						flexDirection='row'
-						justifyContent='flex-end'
-						gap={20}
-					>
-						<AppButton title='Login' onPress={signIn} disabled={!!loading} />
-						<AppButton title='Sign Up' onPress={signUp} disabled={!!loading} />
-					</Group>
-					<Text aria-live='polite'
+				</Column>
+				<Row
+					justifyContent='flex-end'
+					gap={20}
+				>
+					<AppButton title='Login' onPress={signIn} disabled={!!loading} />
+					<AppButton title='Sign Up' onPress={signUp} disabled={!!loading} />
+				</Row>
+				<Text aria-live='polite'
+					style={{
+						...Theme.errorMessage,
+						opacity: !!errorMessage.length ? 1 : 0
+					}}>
+					{!!errorMessage.length ? errorMessage : '0'}
+				</Text>
+				{ !!loading && (
+					<ActivityIndicator
+						size='large'
+						color={primary}
 						style={{
-							...Theme.errorMessage,
-							opacity: !!errorMessage.length ? 1 : 0
-						}}>
-						{!!errorMessage.length ? errorMessage : '0'}
-					</Text>
-					{ !!loading && (
-						<ActivityIndicator
-							size='large'
-							color={primary}
-							style={{
-								position:'absolute',
-								left:0,
-								right:0,
-								bottom:0,
-								top:0,
-							}}
-						/>
-					)}
-				</Group>
+							position:'absolute',
+							left:0,
+							right:0,
+							bottom:0,
+							top:0,
+						}}
+					/>
+				)}
 			</KeyboardAvoidingView>
-		</View>
+		</Column>
 	);
 }
 

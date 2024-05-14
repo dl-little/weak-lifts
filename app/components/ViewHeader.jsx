@@ -1,18 +1,24 @@
+import { Text } from 'react-native';
 import { FIREBASE_AUTH } from '../../FirebaseConfig';
 import { Button } from 'react-native-elements';
-import Group from './Group'
+import Row from './Row';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { useRoute } from '@react-navigation/native';
+import Theme from '../Theme';
 
-const ViewHeader = (props) => {
+const ViewHeader = () => {
+	const route = useRoute().name;
+	
 	return (
-		<Group
-			flexDirection='row'
-			justifyContent='flex-start'
+		<Row
+			justifyContent='space-between'
 			style={{
-				paddingLeft: 20,
-				paddingRight: 20,
+				...Theme.viewHeader,
+				alignItems: 'center',
+				backgroundColor: 'red',
 			}}
 		>
+			<Text>{route}</Text>
 			<Button
 				onPress={() => FIREBASE_AUTH.signOut()}
 				icon={
@@ -28,7 +34,7 @@ const ViewHeader = (props) => {
 				title="Sign Out"
 				type="clear"
 			/>
-		</Group>
+		</Row>
 	);
 }
 
