@@ -1,9 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { ActivityIndicator, TextInput, View, KeyboardAvoidingView, Text } from 'react-native';
+import { ActivityIndicator, TextInput, KeyboardAvoidingView, Text } from 'react-native';
 import Theme, { primary, secondary } from '../../Theme'
 import { AppButton, Logo, Row, Column } from '../../components'
 import { FIREBASE_AUTH } from '../../../FirebaseConfig';
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
+import { FirebaseError } from 'firebase/app';
 
 const SignIn = () => {
 	const [email, setEmail] = useState('');
@@ -11,13 +12,13 @@ const SignIn = () => {
 	const [loading, setLoading] = useState(false);
 	const [errorMessage, setErrorMessage] = useState('');
 	const auth = FIREBASE_AUTH;
-	const inputRef = useRef();
+	const inputRef = useRef<TextInput>(null);
 
 	useEffect(() => {
 		inputRef.current?.focus();
 	}, []);
 
-	const getErrorMessage = (code) => {
+	const getErrorMessage = (code: string) => {
 		switch(code) {
 			case 'auth/invalid-email':
 				return 'Invalid email.';
@@ -35,7 +36,7 @@ const SignIn = () => {
 		try {
 			await signInWithEmailAndPassword(auth, email, password);
 		} catch (error) {
-			setErrorMessage(getErrorMessage(error.code));
+			setErrorMessage(getErrorMessage((error as FirebaseError).code));
 		} finally {
 			setLoading(false);
 		}
@@ -47,14 +48,14 @@ const SignIn = () => {
 			await createUserWithEmailAndPassword(auth, email, password);
 			alert('check your emails');
 		} catch (error) {
-			setErrorMessage(getErrorMessage(error.code))
+			setErrorMessage(getErrorMessage((error as FirebaseError).code))
 		} finally {
 			setLoading(false);
 		}
 	}
 
 	return (
-		<Column style={Theme.container}>
+		<Column style={Theme.container} disabled={!!loading} >
 			<KeyboardAvoidingView behavior='padding'>
 				<Logo
 					height={200}
@@ -62,10 +63,7 @@ const SignIn = () => {
 					primary={primary}
 					secondary={secondary}
 				/>
-				<Column
-					gap={10}
-					disabled={!!loading}
-				>
+				<Column>
 					<TextInput
 						ref={inputRef}
 						value={email}
@@ -84,21 +82,25 @@ const SignIn = () => {
 						autoCapitalize='none'
 						onChangeText={(text) => setPassword(text)}
 					/>
+					<Row
+						style={{
+							justifyContent: 'flex-end',
+							gap: 20,
+						}}
+					>
+						<AppButton title='Login' onPress={signIn} disabled={!!loading} />
+						<AppButton title='Sign Up' onPress={signUp} disabled={!!loading} />
+					</Row>
+					<Text aria-live='polite'
+						style={[
+							Theme.errorMessage,
+							{
+								opacity: !!errorMessage.length ? 1 : 0
+							}
+						]}>
+						{!!errorMessage.length ? errorMessage : '0'}
+					</Text>
 				</Column>
-				<Row
-					justifyContent='flex-end'
-					gap={20}
-				>
-					<AppButton title='Login' onPress={signIn} disabled={!!loading} />
-					<AppButton title='Sign Up' onPress={signUp} disabled={!!loading} />
-				</Row>
-				<Text aria-live='polite'
-					style={{
-						...Theme.errorMessage,
-						opacity: !!errorMessage.length ? 1 : 0
-					}}>
-					{!!errorMessage.length ? errorMessage : '0'}
-				</Text>
 				{ !!loading && (
 					<ActivityIndicator
 						size='large'

@@ -1,6 +1,7 @@
 import { SvgXml } from 'react-native-svg';
+import { ISVGImage } from './interfaces';
 
-const Logo = (props) => {
+const Logo: React.FC<ISVGImage> = (props) => {
 	const xml = `
 	<svg
 		id="sw-js-blob-svg"

@@ -14,21 +14,19 @@ const Theme = StyleSheet.create({
 			dark: '#1E1E1E',
 			light: '#E8E8E8',
 		}),
-		paddingHorizontal: 20
+		paddingVertical: 10,
+		paddingHorizontal: 20,
 	},
 	group: {
 		width: '100%',
 		display: 'flex',
+		gap: 10,
 	},
 	column: {
 		flexDirection: 'column',
 	},
 	row: {
 		flexDirection: 'row',
-		marginVertical: 10
-	},
-	viewHeader: {
-		marginVertical: 0
 	},
 	text: {
 		color: DynamicColorIOS({
@@ -52,13 +50,6 @@ const Theme = StyleSheet.create({
 			dark: secondary,
 			light: secondary,
 		}),
-		text: {
-			color: contrast,
-			fontWeight: 700
-		},
-		disabled: {
-			pointerEvents: 'none',
-		}
 	},
 	errorMessage: {
 		color: 'red',

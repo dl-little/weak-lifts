@@ -3,22 +3,26 @@ import { FIREBASE_AUTH } from '../../FirebaseConfig';
 import { Button } from 'react-native-elements';
 import Row from './Row';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { useRoute } from '@react-navigation/native';
-import Theme from '../Theme';
+import { primary } from '../Theme';
+import { RouteProp } from '@react-navigation/native';
+import { IInsideLayout } from '../screens/interfaces';
 
-const ViewHeader = () => {
-	const route = useRoute().name;
+interface IViewHeader {
+	route: RouteProp<IInsideLayout, keyof IInsideLayout>
+}
+
+const ViewHeader: React.FC<IViewHeader> = ({route}) => {
+	const details = route.params?.details ?? 'Default';
 	
 	return (
 		<Row
-			justifyContent='space-between'
 			style={{
-				...Theme.viewHeader,
+				justifyContent: 'space-between',
 				alignItems: 'center',
-				backgroundColor: 'red',
+				backgroundColor: primary
 			}}
 		>
-			<Text>{route}</Text>
+			<Text>{details}</Text>
 			<Button
 				onPress={() => FIREBASE_AUTH.signOut()}
 				icon={
